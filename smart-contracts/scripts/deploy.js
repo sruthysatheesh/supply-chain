@@ -1,25 +1,25 @@
 const fs = require("fs");
+const hre = require("hardhat");
 require("dotenv").config();
-const { ethers, artifacts } = require("hardhat");
 
 async function main() {
-  const [deployer] = await ethers.getSigners();
+  const [deployer] = await hre.ethers.getSigners();
 
-  console.log("Deploying contract with:", deployer.address);
+  console.log("Deploying contract with:", await deployer.getAddress());
 
-  const FarmerRegistry = await ethers.getContractFactory("FarmerRegistry");
+  const FarmerRegistry = await hre.ethers.getContractFactory("FarmerRegistry");
   const contract = await FarmerRegistry.deploy();
 
-  // This works in Hardhat and most EVMs
-  await contract.waitForDeployment?.(); // if ethers v6
+  await contract.waitForDeployment();
 
   console.log("Contract deployed to:", contract.target);
 
   fs.writeFileSync("address/contractAddress.txt", contract.target);
 
-  const artifact = await hre.artifacts.readArtifact("contracts/FarmerRegistry.sol:FarmerRegistry");
+  const artifact = await hre.artifacts.readArtifact("FarmerRegistry");
   fs.writeFileSync("abi/abi.json", JSON.stringify(artifact, null, 2));
 }
+
 
 main().catch((error) => {
   console.error("Error deploying:", error);
