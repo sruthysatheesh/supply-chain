@@ -37,3 +37,21 @@ document.getElementById('farmerForm').addEventListener('submit', async (e) => {
     document.getElementById('status').textContent = "Transaction failed. (≧ヘ≦ )";
   }
 });
+
+
+document.getElementById('getFarmerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const searchId = document.getElementById('searchFarmerId').value;
+
+  try {
+    const result = await contract.methods.getFarmer(searchId).call();
+    const name = result[0];
+    const product = result[1];
+
+    document.getElementById('status').textContent = `👨‍🌾 Farmer: ${name}, Product: ${product}`;
+  } catch (err) {
+    console.error("Error fetching farmer:", err);
+    document.getElementById('status').textContent = "Farmer not found. (≧ヘ≦ )";
+  }
+});
