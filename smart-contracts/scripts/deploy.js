@@ -14,10 +14,10 @@ async function main() {
 
   console.log("Contract deployed to:", contract.target);
 
-  fs.writeFileSync("address/contractAddress.txt", contract.target);
+  fs.writeFileSync("../frontend/address/contractAddress.txt", contract.target);
 
   const artifact = await hre.artifacts.readArtifact("FarmerRegistry");
-  fs.writeFileSync("abi/abi.json", JSON.stringify(artifact, null, 2));
+  fs.writeFileSync("../frontend/abi/abi.json", JSON.stringify(artifact, null, 2));
 }
 
 

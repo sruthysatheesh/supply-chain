@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Block <%= block.number %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+  <h1>Block #<%= block.number %></h1>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Hash:</strong> <%= block.hash %></li>
+    <li class="list-group-item"><strong>Parent Hash:</strong> <%= block.parentHash %></li>
+    <li class="list-group-item"><strong>Miner:</strong> <%= block.miner %></li>
+    <li class="list-group-item"><strong>Transactions:</strong> <%= block.transactions.length %></li>
+    <li class="list-group-item"><strong>Timestamp:</strong> <%= new Date(Number(block.timestamp) * 1000).toLocaleString() %></li>
+
+  </ul>
+  <h3 class="mt-4">Transactions</h3>
+<% if (block.transactions.length > 0) { %>
+  <ul class="list-group">
+    <% block.transactions.forEach(tx => { %>
+      <li class="list-group-item">
+        <strong>From:</strong> <%= tx.from %><br>
+        <strong>To:</strong> <%= tx.to || 'Contract Creation' %><br>
+        <strong>Value:</strong> <%= tx.valueInEth %> ETH<br>
+        <strong>Hash:</strong> <%= tx.hash %>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No transactions in this block.</p>
+<% } %>
+
+
+
+  <a href="/" class="btn btn-secondary mt-3">← Back</a>
+</body>
+</html>

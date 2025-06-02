@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Besu Block Explorer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+  <h1>🧱 Latest Blocks</h1>
+  <table class="table table-striped">
+    <thead><tr><th>Number</th><th>Hash</th><th>Parent</th><th>Transactions</th></tr></thead>
+    <tbody>
+      <% blocks.forEach(block => { %>
+        <tr>
+          <td><a href="/block/<%= block.number %>"><%= block.number %></a></td>
+          <td><%= block.hash %></td>
+          <td><%= block.parentHash %></td>
+          <td><%= block.transactions.length %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -6,11 +6,10 @@ window.addEventListener('load', async () => {
     web3 = new Web3(window.ethereum);
     await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-    const contractABI = await fetch('contractABI.json')
-  .then(res => res.json())
-  .then(data => data.abi); // extract only the ABI array
-
-    const contractAddress = "0x9B8397f1B0FEcD3a1a40CdD5E8221Fa461898517";
+    const contractABI = await fetch('./abi/abi.json').then(res => res.json()).then(data => data.abi);
+const contractAddress = await fetch('./address/contractAddress.txt')
+  .then(res => res.text())
+  .then(text => text.trim());
 
     contract = new web3.eth.Contract(contractABI, contractAddress);
   } else {
