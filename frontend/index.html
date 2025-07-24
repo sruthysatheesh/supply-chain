@@ -2,11 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Supply Chain - Farmer Registry</title>
+  <title>TheChainedFarm - Farmer Registry</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <ul class="nav">
+    <li><a href="#heading">TheChainedFarm</a></li>
+    <li><a href="#heading">Home</a></li>
+    <li><a href="#insert">Insert Farmer Data</a></li>
+  </ul>
+
+  <div class="hero-content">
+  <h1 class="heading" id="heading">The<span class="italic-word">Chained</span>Farm</h1>
+  <div class="divider slide-in" style="animation-delay: 0.3s">_</div>
+  
+  <h2 class="tagline" style="animation-delay: 0.6s">Revolutionizing Agricultural Transparency with Blockchain Technology</h2>
+  <!-- <img src="public/p.png" alt="Hero Image" class="hero-image"> -->
+   <div class="content">
+   <p class="lol">Every farmer's data is permanently recorded on the blockchain, creating an unforgeable history of agricultural contributions.</p>
+
+   <h3 class="newhead">Ready to join the agricultural revolution?</h3>
+      <p class="paragraf">Ensure you have <a href="https://metamask.io/" target="_blank">MetaMask</a> installed and connected to our private blockchain network.</p>
+      <button class="cta-button">Connect Wallet</button>
+    </div>
+  </div>
+
+  
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+  });
+});
+  </script>
+  </div>
+</div>
+
   <div class="container">
     <h1>Insert Farmer Data</h1>
     <form id="farmerForm">
@@ -24,7 +69,7 @@
 
     <hr>
 
-    <h2>Get Farmer Info</h2>
+    <h2 id="insert">Get Farmer Info</h2>
     <form id="getFarmerForm">
       <label for="searchFarmerId">Enter Farmer ID:</label>
       <input type="text" id="searchFarmerId" required />
